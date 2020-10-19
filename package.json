@@ -23,7 +23,14 @@
 		"node": ">=12"
 	},
 	"dependencies": {
-		"match-gtfs-rt-to-gtfs": "github:derhuerst/match-gtfs-rt-to-gtfs"
+		"@derhuerst/round-robin-scheduler": "^1.0.4",
+		"etag": "^1.8.1",
+		"gtfs-rt-differential-to-full-dataset": "^1.1.0",
+		"hafas-client": "^5.8.0",
+		"hafas-gtfs-rt-feed": "^2.0.0",
+		"hafas-monitor-trips": "^4.0.0",
+		"https-proxy-agent": "^5.0.0",
+		"serve-buffer": "^2.0.0"
 	},
 	"devDependencies": {
 		"eslint": "^7.11.0",
