@@ -9,6 +9,8 @@
 
 ## Installing & running
 
+The build script, executed via `npm run build` will download [the latest VBB GTFS Static data](https://vbb-gtfs.jannisr.de/latest/) and build import it into PostgreSQL; Because it uses [`psql`](https://www.postgresql.org/docs/current/app-psql.html) for that, you can use the usual evironment variables to configure access to the database.
+
 ### via Docker
 
 A Docker image [is available as `derhuerst/berlin-gtfs-rt-server`](https://hub.docker.com/r/derhuerst/berlin-gtfs-rt-server).
@@ -17,12 +19,16 @@ A Docker image [is available as `derhuerst/berlin-gtfs-rt-server`](https://hub.d
 docker run -d -p 3000:3000 -e BBOX='…' derhuerst/berlin-gtfs-rt-server
 ```
 
+*Note:* The Docker image does not contain the Redis server.
+
 ### manually
 
 ```shell
 git clone https://github.com/derhuerst/berlin-gtfs-rt-server.git
 cd berlin-gtfs-rt-server
+
 npm install --production
+npm run build
 
 node index.js
 ```

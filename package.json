@@ -23,13 +23,16 @@
 		"node": ">=12"
 	},
 	"dependencies": {
+		"match-gtfs-rt-to-gtfs": "github:derhuerst/match-gtfs-rt-to-gtfs"
 	},
 	"devDependencies": {
-		"eslint": "^7.11.0"
+		"eslint": "^7.11.0",
+		"gtfs-via-postgres": "^2.2.0"
 	},
 	"scripts": {
 		"lint": "eslint .",
+		"build": "./build.sh",
 		"test": "echo todo; exit 1",
-		"prepublishOnly": "npm run lint && npm test"
+		"prepublishOnly": "npm run lint && npm run build && npm test"
 	}
 }
