@@ -7,6 +7,7 @@ const {createServer} = require('http')
 const computeEtag = require('etag')
 const serveBuffer = require('serve-buffer')
 const hafas = require('./lib/hafas')
+const {matchTrip, stats: matchStats} = require('./lib/match')
 
 const BBOX = JSON.parse(process.argv.slice[3] || process.env.BBOX || 'null')
 
@@ -44,6 +45,10 @@ differentialToFull.on('change', () => {
 let stats = null
 monitor.on('stats', (newStats) => {
 	stats = newStats
+	stats = {
+		...newStats,
+		matchTrip: matchStats(),
+	}
 })
 
 const server = createServer((req, res) => {
@@ -60,7 +65,17 @@ const server = createServer((req, res) => {
 })
 
 monitor.on('position', (loc, movement) => writePosition(loc, movement))
-monitor.on('trip', trip => writeTrip(trip))
+monitor.on('trip', (trip) => {
+	matchTrip(trip)
+	.then((trip) => {
+		writeTrip(trip)
+	})
+	.catch((err) => {
+		console.error(err)
+		writeTrip(trip)
+	})
+	.catch(onError)
+})
 
 writer.pipe(differentialToFull)
 
