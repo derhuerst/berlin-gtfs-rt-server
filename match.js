@@ -1,7 +1,8 @@
 'use strict'
 
-const {pipeline, Transform} = require('stream')
+const {pipeline} = require('stream')
 const {parse, stringify} = require('ndjson')
+const {transform: parallelTransform} = require('parallel-stream')
 const {POSITION, TRIP} = require('./lib/protocol')
 const {matchTrip, stats} = require('./lib/match')
 
@@ -26,11 +27,7 @@ const transform = (item, _, cb) => {
 pipeline(
 	process.stdin,
 	parse(),
-	// todo: make transform parallel
-	new Transform({
-		objectMode: true,
-		transform,
-	}),
+	parallelTransform(transform, {objectMode: true, concurrency: 16}),
 	stringify(),
 	process.stdout,
 	(err) => {

@@ -39,7 +39,8 @@
 	},
 	"devDependencies": {
 		"eslint": "^7.11.0",
-		"gtfs-via-postgres": "^2.2.0"
+		"gtfs-via-postgres": "^2.2.0",
+		"parallel-stream": "^1.1.2"
 	},
 	"scripts": {
 		"lint": "eslint .",
