@@ -19,7 +19,10 @@ const onError = (err) => {
 const monitor = createMonitor(hafas, BBOX, {
 	fetchTripsInterval: 60 * 1000, // 60s
 })
-monitor.on('error', onError)
+monitor.on('error', (err) => {
+	if (err.code === 'ECONNRESET') console.error(err)
+	else onError(err)
+})
 monitor.on('hafas-error', console.error)
 
 const {

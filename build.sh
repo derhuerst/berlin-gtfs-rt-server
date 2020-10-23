@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 set -o pipefail
 set -x
 
-wget -r --no-parent --no-directories -P -N --no-clobber gtfs 'https://vbb-gtfs.jannisr.de/latest/'
+wget -r --no-parent --no-directories -P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
 
-NODE_ENV=production gtfs-to-sql -d \
+NODE_ENV=production node_modules/.bin/gtfs-to-sql \
 	gtfs/agency.csv \
 	gtfs/calendar.csv \
 	gtfs/calendar_dates.csv \
@@ -16,6 +16,6 @@ NODE_ENV=production gtfs-to-sql -d \
 	gtfs/stops.csv \
 	gtfs/transfers.csv \
 	gtfs/trips.csv \
-	| psql -b
+	-d | psql -b
 
-NODE_ENV=production build-gtfs-match-index | psql -b
+NODE_ENV=production node_modules/.bin/build-gtfs-match-index | psql -b
