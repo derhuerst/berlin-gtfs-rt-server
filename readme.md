@@ -44,5 +44,5 @@ cd berlin-gtfs-rt-server
 npm install --production
 npm run build
 
-env BBOX='…' node index.js
+env BBOX='…' node monitor.js | node match.js | node serve.js
 ```

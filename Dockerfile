@@ -18,4 +18,4 @@ ADD . /app
 
 RUN npm run build
 
-CMD ["node", "index.js"]
+CMD node monitor.js | node match.js | node serve.js

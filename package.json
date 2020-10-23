@@ -33,6 +33,7 @@
 		"https-proxy-agent": "^5.0.0",
 		"live-moving-average": "^1.1.0",
 		"match-gtfs-rt-to-gtfs": "github:derhuerst/match-gtfs-rt-to-gtfs",
+		"ndjson": "^2.0.0",
 		"p-limit": "^3.0.2",
 		"serve-buffer": "^2.0.0"
 	},
