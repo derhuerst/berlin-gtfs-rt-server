@@ -4,11 +4,26 @@ const {pipeline} = require('stream')
 const {parse, stringify} = require('ndjson')
 const {transform: parallelTransform} = require('parallel-stream')
 const {POSITION, TRIP} = require('./lib/protocol')
-const {matchTrip, stats} = require('./lib/match')
+const {
+	matchTrip,
+	matchMovement,
+	stats,
+} = require('./lib/match')
 
-// todo: match positions as well
+// todo: DRY this
 const transform = (item, _, cb) => {
-	if (item[0] === TRIP) {
+	if (item[0] === POSITION) {
+		const movement = item[2]
+
+		matchMovement(movement)
+		.then(movement => cb(null, [POSITION, item[1], movement]))
+		// If matching failed, we still pass on the movement.
+		.catch((err) => {
+			console.error(err)
+			cb(null, [POSITION, item[1], movement])
+		})
+		.catch(cb)
+	} else if (item[0] === POSITION) {
 		const trip = item[1]
 
 		matchTrip(trip)

@@ -28,7 +28,7 @@
 		"etag": "^1.8.1",
 		"gtfs-rt-differential-to-full-dataset": "^1.1.0",
 		"hafas-client": "^5.8.0",
-		"hafas-gtfs-rt-feed": "^2.0.0",
+		"hafas-gtfs-rt-feed": "^3.0.0",
 		"hafas-monitor-trips": "^4.0.0",
 		"https-proxy-agent": "^5.0.0",
 		"live-moving-average": "^1.1.0",
