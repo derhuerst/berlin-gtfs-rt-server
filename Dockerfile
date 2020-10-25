@@ -3,7 +3,7 @@ WORKDIR /app
 
 RUN apk add --update git bash
 
-ADD package.json /app
+ADD package.json build.sh /app/
 RUN npm install --production
 
 FROM node:alpine

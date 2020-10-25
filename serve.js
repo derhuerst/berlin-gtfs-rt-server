@@ -52,7 +52,6 @@ pipeline(
 	onError,
 )
 
-// todo: accept positions from stdin
 parser.on('data', (item) => {
 	if (item[0] === POSITION) {
 		writePosition(item[1], item[2])

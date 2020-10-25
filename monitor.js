@@ -17,7 +17,7 @@ const monitor = createMonitor(hafas, BBOX, {
 })
 monitor.on('error', (err) => {
 	console.error(err)
-	if (!err || err.code !== 'ECONNRESET') process.exit(1)
+	if (!['ECONNRESET', 'ETIMEDOUT', 'EAI_AGAIN'].includes(err.code)) process.exit(1)
 })
 monitor.on('hafas-error', console.error)
 

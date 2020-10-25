@@ -17,7 +17,7 @@ This project
 
 The build script, executed via `npm run build` will download [the latest VBB GTFS Static data](https://vbb-gtfs.jannisr.de/latest/) and build import it into PostgreSQL; Because it uses [`psql`](https://www.postgresql.org/docs/current/app-psql.html) for that, you can use the usual evironment variables to configure access to the database.
 
-`berlin-gtfs-rt-server` expects a [Redis](https://redis.io/) server running on `127.0.0.1:6379` (default port), but you can set the `REDIS_URL` environment variable to change this.
+`berlin-gtfs-rt-server` expects a [Redis](https://redis.io/) server running on `127.0.0.1:6379` (default port), but you can set the `REDIS_URL` environment variable to change this; It needs a [PostgreSQL](https://www.postgresql.org) 12+ server, you can configure access using the [`PG*` environment variables](https://www.postgresql.org/docs/12/libpq-envars.html).
 
 Specify the bounding box to be observed as JSON:
 
