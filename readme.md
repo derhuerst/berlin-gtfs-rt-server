@@ -15,34 +15,36 @@ This project
 
 ## Installing & running
 
-The build script, executed via `npm run build` will download [the latest VBB GTFS Static data](https://vbb-gtfs.jannisr.de/latest/) and build import it into PostgreSQL; Because it uses [`psql`](https://www.postgresql.org/docs/current/app-psql.html) for that, you can use the usual evironment variables to configure access to the database.
+### Prerequisites
 
-`berlin-gtfs-rt-server` expects a [Redis](https://redis.io/) server running on `127.0.0.1:6379` (default port), but you can set the `REDIS_URL` environment variable to change this; It needs a [PostgreSQL](https://www.postgresql.org) 12+ server, you can configure access using the [`PG*` environment variables](https://www.postgresql.org/docs/12/libpq-envars.html).
-
-Specify the bounding box to be observed as JSON:
-
-```shell
-BBOX='{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'
-```
-
-### via Docker
-
-A Docker image [is available as `derhuerst/berlin-gtfs-rt-server`](https://hub.docker.com/r/derhuerst/berlin-gtfs-rt-server).
-
-```shell
-docker run -d -p 3000:3000 -e BBOX='…' derhuerst/berlin-gtfs-rt-server
-```
-
-*Note:* The Docker image does not contain the Redis server.
-
-### manually
+`berlin-gtfs-rt-server` needs access to a [Redis](https://redis.io/) server, you can configure a custom host/port by setting the `REDIS_URL` environment variable. It also needs a [PostgreSQL](https://www.postgresql.org) 12+ server to work, you can configure access using the [`PG*` environment variables](https://www.postgresql.org/docs/12/libpq-envars.html).
 
 ```shell
 git clone https://github.com/derhuerst/berlin-gtfs-rt-server.git
 cd berlin-gtfs-rt-server
-
 npm install --production
-npm run build
-
-env BBOX='…' node monitor.js | node match.js | node serve.js
 ```
+
+### Building the matching index
+
+```shell
+npm run build
+```
+
+The build script will download [the latest VBB GTFS Static data](https://vbb-gtfs.jannisr.de/latest/) and import it into PostgreSQL. Then, it will add [additional lookup tables to match realtime data with GTFS Static data](https://github.com/derhuerst/match-gtfs-rt-to-gtfs). [`psql`](https://www.postgresql.org/docs/current/app-psql.html) will need to have access to your database.
+
+### Running
+
+Specify the bounding box to be observed as JSON:
+
+```shell
+export BBOX='{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'
+```
+
+`berlin-gtfs-rt-server` is split into three parts: polling the HAFAS endpoint, matching realtime data & serving a GTFS-RT feed. These parts are implemented as separate processes:
+
+```shell
+node monitor.js | node match.js | node serve.js
+```
+
+*Note:* I recommend to run them with [`set -o pipefail`](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/). Also, use a tool like [`systemctl`](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units) or [`forever`](https://github.com/foreversd/forever#readme) that restarts them when they crash.
