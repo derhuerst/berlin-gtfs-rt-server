@@ -3,12 +3,15 @@
 const {pipeline} = require('stream')
 const {parse, stringify} = require('ndjson')
 const {transform: parallelTransform} = require('parallel-stream')
+const createLogger = require('./lib/logger')
 const {POSITION, TRIP} = require('./lib/protocol')
 const {
 	matchTrip,
 	matchMovement,
 	stats,
 } = require('./lib/match')
+
+const logger = createLogger('match')
 
 // todo: DRY this
 const transform = (item, _, cb) => {
@@ -19,7 +22,7 @@ const transform = (item, _, cb) => {
 		.then(movement => cb(null, [POSITION, item[1], movement]))
 		// If matching failed, we still pass on the movement.
 		.catch((err) => {
-			console.error(err)
+			logger.error(err)
 			cb(null, [POSITION, item[1], movement])
 		})
 		.catch(cb)
@@ -30,7 +33,7 @@ const transform = (item, _, cb) => {
 		.then(trip => cb(null, [TRIP, trip]))
 		// If matching failed, we still pass on the trip.
 		.catch((err) => {
-			console.error(err)
+			logger.error(err)
 			cb(null, [TRIP, trip])
 		})
 		.catch(cb)
@@ -47,11 +50,11 @@ pipeline(
 	process.stdout,
 	(err) => {
 		if (!err) return;
-		console.error(err)
+		logger.error(err)
 		process.exit(1)
 	},
 )
 
 setInterval(() => {
-	console.error(stats())
+	logger.info(stats())
 }, 5000)

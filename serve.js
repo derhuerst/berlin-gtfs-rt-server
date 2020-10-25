@@ -7,11 +7,14 @@ const serveBuffer = require('serve-buffer')
 const {pipeline} = require('stream')
 const {parse} = require('ndjson')
 const {createServer} = require('http')
+const createLogger = require('./lib/logger')
 const {POSITION, TRIP} = require('./lib/protocol')
+
+const logger = createLogger('serve')
 
 const onError = (err) => {
 	if (!err) return;
-	console.error(err)
+	logger.error(err)
 	process.exit(1)
 }
 
@@ -58,7 +61,7 @@ parser.on('data', (item) => {
 	} else if (item[0] === TRIP) {
 		writeTrip(item[1])
 	} else {
-		console.error('invalid/unknown item', item)
+		logger.warn('invalid/unknown item', item)
 	}
 })
 
@@ -69,8 +72,4 @@ pipeline(
 )
 
 createServer(onRequest)
-.listen(3000, (err) => {
-	if (!err) return;
-	console.error(err)
-	process.exit(1)
-})
+.listen(3000, onError)

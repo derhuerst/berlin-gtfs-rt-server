@@ -35,6 +35,7 @@
 		"match-gtfs-rt-to-gtfs": "github:derhuerst/match-gtfs-rt-to-gtfs",
 		"ndjson": "^2.0.0",
 		"p-limit": "^3.0.2",
+		"pino": "^6.7.0",
 		"serve-buffer": "^2.0.0"
 	},
 	"devDependencies": {
