@@ -40,13 +40,16 @@
 		"serve-buffer": "^2.0.0"
 	},
 	"devDependencies": {
+		"@derhuerst/technical-docs-cli": "^1.1.1",
 		"eslint": "^7.11.0",
 		"gtfs-via-postgres": "^2.2.0",
 		"parallel-stream": "^1.1.2"
 	},
 	"scripts": {
+		"start": "node monitor.js | node match.js | node serve.js",
+		"docs": "build-technical-doc <docs/readme.md >docs/index.html",
 		"lint": "eslint .",
-		"build": "./build.sh",
+		"build": "./build.sh && npm run docs",
 		"test": "echo todo; exit 1",
 		"prepublishOnly": "npm run lint && npm run build && npm test"
 	}

@@ -11,3 +11,4 @@ pnpm-debug.log
 
 /gtfs
 /dump.rdb
+/docs/*.html
