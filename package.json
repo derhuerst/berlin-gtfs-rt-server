@@ -24,6 +24,7 @@
 	},
 	"dependencies": {
 		"@derhuerst/round-robin-scheduler": "^1.0.4",
+		"cors": "^2.8.5",
 		"debug": "^4.2.0",
 		"etag": "^1.8.1",
 		"gtfs-rt-differential-to-full-dataset": "^1.1.0",

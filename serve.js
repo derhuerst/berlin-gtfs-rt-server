@@ -6,6 +6,7 @@ const computeEtag = require('etag')
 const serveBuffer = require('serve-buffer')
 const {pipeline} = require('stream')
 const {parse} = require('ndjson')
+const createCors = require('cors')
 const {createServer} = require('http')
 const createLogger = require('./lib/logger')
 const {POSITION, TRIP} = require('./lib/protocol')
@@ -71,5 +72,15 @@ pipeline(
 	onError,
 )
 
-createServer(onRequest)
+const cors = createCors()
+createServer((req, res) => {
+	cors(req, res, (err) => {
+		if (err) {
+			res.statusCode = err.statusCode || 500
+			res.end(err + '')
+		} else {
+			onRequest(req, res)
+		}
+	})
+})
 .listen(3000, onError)
