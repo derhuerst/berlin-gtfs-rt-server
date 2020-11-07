@@ -1,10 +1,10 @@
-# Inofficial [GTFS Realtime](https://gtfs.org/reference/realtime/v2/) feed for Berlin & Brandenburg
+# Unofficial [GTFS Realtime](https://gtfs.org/reference/realtime/v2/) feed for Berlin & Brandenburg
 
 **This endpoint provides realtime transit data for Berlin & Brandenburg in the [GTFS Realtime (GTFS-RT)](https://gtfs.org/reference/realtime/v2/) format.**
 
 [![API status](https://badgen.net/uptime-robot/status/m786241281-20b657adafa29b96eef65372)](https://stats.uptimerobot.com/57wNLs39M/786241281)
 
-Underneath, it works by polling the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas) underneath. Those interested in delays of *all* vehicles, instead of a particular one, don't have to poll their API brute-force: They're able to fetch this information efficiently.
+Underneath, it works by polling the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas) underneath. Those interested in delays of *all* vehicles, instead of a particular one, don't have to poll VBB's API brute-force: They're able to fetch the data efficiently from here.
 
 *Note:* This feed is run by people *not related* to [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg), [BVG](https://en.wikipedia.org/wiki/Berliner_Verkehrsbetriebe) and the government.
 
