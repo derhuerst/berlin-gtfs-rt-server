@@ -33,11 +33,13 @@
 		"hafas-monitor-trips": "^4.0.0",
 		"https-proxy-agent": "^5.0.0",
 		"live-moving-average": "^1.1.0",
-		"match-gtfs-rt-to-gtfs": "github:derhuerst/match-gtfs-rt-to-gtfs",
+		"match-gtfs-rt-to-gtfs": "^3.1.0",
 		"ndjson": "^2.0.0",
 		"p-limit": "^3.0.2",
 		"pino": "^6.7.0",
-		"serve-buffer": "^2.0.0"
+		"serve-buffer": "^2.0.0",
+		"slugg": "^1.2.1",
+		"tokenize-vbb-station-name": "^1.1.0"
 	},
 	"devDependencies": {
 		"@derhuerst/technical-docs-cli": "^1.1.1",
