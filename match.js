@@ -49,12 +49,14 @@ pipeline(
 	stringify(),
 	process.stdout,
 	(err) => {
-		if (!err) return;
-		logger.error(err)
-		process.exit(1)
+		if (err) {
+			logger.error(err)
+			process.exit(1)
+		}
+		clearInterval(statsInterval)
 	},
 )
 
-setInterval(() => {
+const statsInterval = setInterval(() => {
 	logger.info(stats())
 }, 5000)

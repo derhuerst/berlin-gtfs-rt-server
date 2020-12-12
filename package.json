@@ -49,7 +49,7 @@
 	},
 	"scripts": {
 		"start": "node monitor.js | node match.js | node serve.js",
-		"docs": "build-technical-doc <docs/readme.md >docs/index.html",
+		"docs": "build-technical-doc --syntax-stylesheet-url /syntax.css <docs/readme.md >docs/index.html && build-technical-doc --syntax-stylesheet github >docs/syntax.css",
 		"lint": "eslint .",
 		"build": "./build.sh && npm run docs",
 		"test": "echo todo; exit 1",

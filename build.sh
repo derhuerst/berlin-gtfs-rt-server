@@ -6,6 +6,8 @@ set -x
 
 wget -r -R 'shapes.csv' --no-parent --no-directories -P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
 
+env | grep '^PG'
+
 NODE_ENV=production node_modules/.bin/gtfs-to-sql \
 	gtfs/agency.csv \
 	gtfs/calendar.csv \
