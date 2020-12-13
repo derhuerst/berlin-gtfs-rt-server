@@ -26,7 +26,7 @@ const transform = (item, _, cb) => {
 			cb(null, [POSITION, item[1], movement])
 		})
 		.catch(cb)
-	} else if (item[0] === POSITION) {
+	} else if (item[0] === TRIP) {
 		const trip = item[1]
 
 		matchTrip(trip)
