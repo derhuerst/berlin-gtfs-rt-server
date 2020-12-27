@@ -3,6 +3,7 @@
 const createGtfsRtWriter = require('hafas-gtfs-rt-feed/writer')
 const differentialToFullDataset = require('gtfs-rt-differential-to-full-dataset')
 const computeEtag = require('etag')
+const {gzipSync, brotliCompressSync} = require('zlib')
 const serveBuffer = require('serve-buffer')
 const {pipeline} = require('stream')
 const {parse} = require('ndjson')
@@ -33,16 +34,28 @@ const differentialToFull = differentialToFullDataset({
 let feed = Buffer.alloc(0)
 let timeModified = new Date()
 let etag = computeEtag(feed)
+let gzippedFeed = null, gzippedEtag = null
+let brotliCompressedFeed = null, brotliCompressedEtag = null
 differentialToFull.on('change', () => {
 	feed = differentialToFull.asFeedMessage()
 	timeModified = new Date()
 	etag = computeEtag(feed)
+	gzippedFeed = gzipSync(feed)
+	gzippedEtag = computeEtag(gzippedFeed)
+	brotliCompressedFeed = brotliCompressSync(feed)
+	brotliCompressedEtag = computeEtag(brotliCompressedFeed)
 })
 
 const onRequest = (req, res) => {
 	const path = new URL(req.url, 'http://localhost').pathname
 	if (path === '/') {
-		serveBuffer(req, res, feed, {timeModified, etag})
+		serveBuffer(req, res, feed, {
+			timeModified, etag,
+			gzippedBuffer: gzippedFeed,
+			gzippedEtag,
+			brotliCompressedBuffer: brotliCompressedFeed,
+			brotliCompressedEtag,
+		})
 	} else {
 		res.statusCode = 404
 		res.end('nope')
