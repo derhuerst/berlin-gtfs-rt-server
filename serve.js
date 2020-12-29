@@ -34,27 +34,34 @@ const differentialToFull = differentialToFullDataset({
 let feed = Buffer.alloc(0)
 let timeModified = new Date()
 let etag = computeEtag(feed)
-let gzippedFeed = null, gzippedEtag = null
-let brotliCompressedFeed = null, brotliCompressedEtag = null
 differentialToFull.on('change', () => {
 	feed = differentialToFull.asFeedMessage()
 	timeModified = new Date()
 	etag = computeEtag(feed)
-	gzippedFeed = gzipSync(feed)
-	gzippedEtag = computeEtag(gzippedFeed)
-	brotliCompressedFeed = brotliCompressSync(feed)
-	brotliCompressedEtag = computeEtag(brotliCompressedFeed)
 })
+
+// note: this is assumes that `buf` is not mutated
+const compression = compress => {
+	const cache = new WeakMap()
+	return buf => {
+		if (cache.has(buf)) return cache.get(buf)
+		const compressedBuffer = compress(buf)
+		const res = {
+			compressedBuffer,
+			compressedEtag: computeEtag(compressedBuffer),
+		}
+		cache.set(buf, res)
+		return res
+	}
+}
 
 const onRequest = (req, res) => {
 	const path = new URL(req.url, 'http://localhost').pathname
 	if (path === '/') {
 		serveBuffer(req, res, feed, {
 			timeModified, etag,
-			gzippedBuffer: gzippedFeed,
-			gzippedEtag,
-			brotliCompressedBuffer: brotliCompressedFeed,
-			brotliCompressedEtag,
+			gzip: compression(gzipSync),
+			brotliCompress: compression(brotliCompressSync),
 		})
 	} else {
 		res.statusCode = 404

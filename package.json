@@ -37,7 +37,7 @@
 		"ndjson": "^2.0.0",
 		"p-limit": "^3.0.2",
 		"pino": "^6.7.0",
-		"serve-buffer": "^2.2.0",
+		"serve-buffer": "^2.3.0",
 		"slugg": "^1.2.1",
 		"tokenize-vbb-station-name": "^1.1.0"
 	},
