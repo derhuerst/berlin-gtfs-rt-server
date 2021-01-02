@@ -42,14 +42,14 @@
 		"tokenize-vbb-station-name": "^1.1.0"
 	},
 	"devDependencies": {
-		"@derhuerst/technical-docs-cli": "^1.1.1",
+		"@derhuerst/technical-docs-cli": "^1.2.0",
 		"eslint": "^7.11.0",
 		"gtfs-via-postgres": "^2.2.0",
 		"parallel-stream": "^1.1.2"
 	},
 	"scripts": {
 		"start": "node monitor.js | node match.js | node serve.js",
-		"docs": "build-technical-doc --syntax-stylesheet-url /syntax.css <docs/readme.md >docs/index.html && build-technical-doc --syntax-stylesheet github >docs/syntax.css",
+		"docs": "build-technical-doc --inline-html --syntax-stylesheet-url /syntax.css <docs/readme.md >docs/index.html && build-technical-doc --syntax-stylesheet github >docs/syntax.css",
 		"lint": "eslint .",
 		"build": "./build.sh && npm run docs",
 		"test": "echo todo; exit 1",
