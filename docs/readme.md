@@ -4,9 +4,9 @@
 
 [![API status](https://badgen.net/uptime-robot/status/m786241281-20b657adafa29b96eef65372)](https://stats.uptimerobot.com/57wNLs39M/786241281)
 
-<iframe id="inspector" title="gtfs-rt-inspector showing this feed" loading="lazy" src="http://localhost:8000/?feedUrl=https%3A%2F%2Fv0.berlin-gtfs-rt.transport.rest%2Ffeed&feedSyncStopped=true" style="width: 100%; height: 50vh; min-height: 20em; border: 1px solid #333; box-sizing: border-box"></iframe>
+<iframe id="inspector" title="gtfs-rt-inspector showing this feed" loading="lazy" src="https://public-transport.github.io/gtfs-rt-inspector/?feedUrl=https%3A%2F%2Fv0.berlin-gtfs-rt.transport.rest%2Ffeed&feedSyncStopped=true" style="width: 100%; height: 50vh; min-height: 20em; border: 1px solid #333; box-sizing: border-box"></iframe>
 
-Underneath, it works by polling the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas) underneath. Those interested in delays of *all* vehicles, instead of a particular one, don't have to poll VBB's API brute-force: They're able to fetch the data efficiently from here.
+Underneath, it works by polling the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas). Those interested in delays of *all* vehicles, instead of a particular one, don't have to poll VBB's API brute-force: They're able to fetch the data efficiently from here.
 
 *Note:* This feed is run by people *not related* to [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg), [BVG](https://en.wikipedia.org/wiki/Berliner_Verkehrsbetriebe) and the government.
 
@@ -25,7 +25,7 @@ Underneath, it works by polling the [VBB](https://en.wikipedia.org/wiki/Verkehrs
 
 **The URL of the GTFS-RT feed is [`https://v0.berlin-gtfs-rt.transport.rest/feed`](https://v0.berlin-gtfs-rt.transport.rest/feed).**
 
-As an example, let's use [`print-gtfs-rt-cli`](https://github.com/derhuerst/print-gtfs-rt-cli) and [`jq`](https://stedolan.github.io/jq/) to inspect it:
+As an example, let's use [`print-gtfs-rt-cli`](https://github.com/derhuerst/print-gtfs-rt-cli), [`head`](https://www.man7.org/linux/man-pages/man1/head.1.html) and [`jq`](https://stedolan.github.io/jq/) to inspect it:
 
 ```shell
 curl 'https://v0.berlin-gtfs-rt.transport.rest/feed' -s | print-gtfs-rt --json | head -n 1 | jq
