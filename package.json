@@ -18,7 +18,21 @@
 	"homepage": "https://github.com/derhuerst/berlin-gtfs-rt-server",
 	"repository": "derhuerst/berlin-gtfs-rt-server",
 	"bugs": "https://github.com/derhuerst/berlin-gtfs-rt-server/issues",
-	"license": "ISC",
+	"license": "(Apache-2.0 AND Prosperity-3.0.0)",
+	"funding": [
+		{
+			"type": "License Zero",
+			"url": "https://licensezero.com/offers/todo"
+		},
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/derhuerst"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/derhuerst"
+		}
+	],
 	"engines": {
 		"node": ">=12"
 	},
