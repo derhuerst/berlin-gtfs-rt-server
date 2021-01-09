@@ -23,5 +23,5 @@ NODE_ENV=production node_modules/.bin/gtfs-to-sql \
 
 lib="$(dirname $(realpath $0))/lib"
 NODE_ENV=production node_modules/.bin/build-gtfs-match-index \
-	$lib/gtfs-rt-info.js $lib/gtfs-info.js \
+	$lib/hafas-info.js $lib/gtfs-info.js \
 	| psql -b
