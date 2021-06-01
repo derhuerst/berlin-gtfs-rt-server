@@ -37,8 +37,10 @@
 		"node": ">=12"
 	},
 	"dependencies": {
+		"cached-hafas-client": "^4.0.0",
 		"hafas-client": "^5.16.0",
 		"hafas-gtfs-rt-feed": "^4.0.0",
+		"ioredis": "^4.26.0",
 		"slugg": "^1.2.1",
 		"tokenize-vbb-station-name": "^1.1.0"
 	},
