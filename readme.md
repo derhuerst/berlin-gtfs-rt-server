@@ -49,6 +49,20 @@ export BBOX='{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'
 
 In production, run all three using a tool like [`systemctl`](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units), [`forever`](https://github.com/foreversd/forever#readme) or [Kubernetes](https://kubernetes.io) that restarts them when they crash.
 
+### via Docker
+
+A Docker image [is available as `derhuerst/berlin-gtfs-rt-server`](https://hub.docker.com/r/derhuerst/berlin-gtfs-rt-server).
+
+*Note:* The Docker image *dies not* contain Redis, PostgreSQL & NATS. You need to configure access to them using the environment variables documented above (e.g. `NATS_STREAMING_URL`).
+
+```shell
+export BBOX='{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'
+# build the matching index
+docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server ./build.sh
+# run
+docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server
+```
+
 
 ## License
 
