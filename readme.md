@@ -17,7 +17,7 @@ This project uses [`hafas-client`](https://github.com/public-transport/hafas-cli
 
 It also needs access to a [PostgreSQL](https://www.postgresql.org) 12+ server; Pass custom [`PG*` environment variables](https://www.postgresql.org/docs/12/libpq-envars.html) if you run PostgreSQL in an unusual configuration.
 
-It also needs access to a [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro) server (just follow its [setup guide](https://docs.nats.io/nats-streaming-server/run)); Set the `NATS_URL` environment variable if you run it in an unusual configuration.
+It also needs access to a [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro) server (just follow its [setup guide](https://docs.nats.io/nats-streaming-server/run)); Set the `NATS_STREAMING_URL` environment variable if you run it in an unusual configuration.
 
 ```shell
 git clone https://github.com/derhuerst/berlin-gtfs-rt-server.git
@@ -53,7 +53,7 @@ In production, run all three using a tool like [`systemctl`](https://www.digital
 
 A Docker image [is available as `derhuerst/berlin-gtfs-rt-server`](https://hub.docker.com/r/derhuerst/berlin-gtfs-rt-server).
 
-*Note:* The Docker image *dies not* contain Redis, PostgreSQL & NATS. You need to configure access to them using the environment variables documented above (e.g. `NATS_STREAMING_URL`).
+*Note:* The Docker image *does not* contain Redis, PostgreSQL & NATS. You need to configure access to them using the environment variables documented above (e.g. `NATS_STREAMING_URL`).
 
 ```shell
 export BBOX='{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'

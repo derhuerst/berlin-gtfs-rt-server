@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.description="Expose Berlin & Brandenburg transit 
 LABEL org.opencontainers.image.authors="Jannis R <mail@jannisr.de>"
 LABEL org.opencontainers.image.documentation="https://github.com/derhuerst/berlin-gtfs-rt-server"
 LABEL org.opencontainers.image.source="https://github.com/derhuerst/berlin-gtfs-rt-server"
-LABEL org.opencontainers.image.revision="1"
+LABEL org.opencontainers.image.revision="2"
 LABEL org.opencontainers.image.licenses="(Apache-2.0 AND Prosperity-3.0.0)"
 WORKDIR /app
 
