@@ -39,7 +39,7 @@
 	"dependencies": {
 		"cached-hafas-client": "^4.0.0",
 		"hafas-client": "^5.16.0",
-		"hafas-gtfs-rt-feed": "^5.0.0",
+		"hafas-gtfs-rt-feed": "^5.3.0",
 		"ioredis": "^4.26.0",
 		"normalize-vbb-station-name-for-search": "^1.0.0",
 		"slugg": "^1.2.1"
@@ -54,7 +54,7 @@
 		"docs": "build-technical-doc --inline-html --syntax-stylesheet-url /syntax.css <docs/readme.md >docs/index.html && build-technical-doc --syntax-stylesheet github >docs/syntax.css",
 		"lint": "eslint .",
 		"build": "./build.sh && npm run docs",
-		"test": "echo todo; exit 1",
+		"test": "./test/index.sh",
 		"prepublishOnly": "npm run lint && npm run build && npm test"
 	}
 }
