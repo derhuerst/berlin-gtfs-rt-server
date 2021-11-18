@@ -65,6 +65,20 @@ docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server ./build.sh
 docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server
 ```
 
+### via docker-compose
+
+The example [`docker-compose.yml`](docker-compose.yml) starts up a complete set of containers (`berlin-gtfs-rt-server`, Redis, PostGIS/PostgreSQL, [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro)) to generate a GTFS-RT feed
+
+Be sure to set `POSTGRES_PASSWORD`, either via a `.env` file or an environment variable.
+
+The environment may be started via
+
+```sh
+POSTGRES_PASSWORD=mySecretPassword docker-compose up -d
+```
+
+After starting, the GTFS-RT feed should be available via `http://localhost:3000/`.
+
 ### inspecting the feed
 
 Check out [`hafas-gtfs-rt-feed`'s *inspecting the feed* section](https://github.com/derhuerst/hafas-gtfs-rt-feed/blob/master/readme.md#inspecting-the-feed).

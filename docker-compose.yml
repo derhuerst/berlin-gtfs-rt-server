@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  berlin-gtfs-rt-server:
+    build: .
+    environment:
+      BBOX: '{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'
+      NATS_STREAMING_URL: http://nats-streaming:4222/
+      REDIS_URL: http://redis:6379/
+      PGHOST: db
+      PGUSER: postgres
+      PGPASSWORD: $POSTGRES_PASSWORD
+    depends_on:
+      - nats-streaming
+      - redis
+      - db
+    ports:
+      - "3000:3000"
+  nats-streaming:
+    image: nats-streaming
+  redis:
+    image: redis
+  db:
+    hostname: db
+    image: postgis/postgis
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
