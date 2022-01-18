@@ -20,6 +20,7 @@ NODE_ENV=production node_modules/.bin/match-with-gtfs \
 
 NODE_ENV=production node_modules/.bin/serve-as-gtfs-rt \
 	--signal-demand \
+	--static-feed-url 'https://vbb-gtfs.jannisr.de/latest/' \
 	&
 
 wait || exit 1 # fail if any child failed
