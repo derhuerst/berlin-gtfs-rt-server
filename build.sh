@@ -4,7 +4,9 @@ set -e
 set -o pipefail
 set -x
 
-wget -r --no-parent --no-directories -P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
+wget --compression auto \
+	-r --no-parent --no-directories -R .csv.gz \
+	-P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
 
 env | grep '^PG'
 
