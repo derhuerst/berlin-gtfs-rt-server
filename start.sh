@@ -15,7 +15,6 @@ NODE_ENV=production node_modules/.bin/monitor-hafas \
 
 NODE_ENV=production node_modules/.bin/match-with-gtfs \
 	$lib/hafas-info.js $lib/gtfs-info.js \
-	--before-match-trip $lib/truncate-at-in-seat-transfer.js \
 	&
 
 NODE_ENV=production node_modules/.bin/serve-as-gtfs-rt \
