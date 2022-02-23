@@ -16,12 +16,12 @@ NODE_ENV=production node_modules/.bin/gtfs-to-sql -d --trips-without-shape-id --
 	gtfs/calendar_dates.csv \
 	gtfs/frequencies.csv \
 	gtfs/routes.csv \
-	gtfs/shapes.csv \
 	gtfs/stop_times.csv \
 	gtfs/stops.csv \
 	gtfs/transfers.csv \
 	gtfs/trips.csv \
 	| psql -b
+	# gtfs/shapes.csv \
 
 lib="$(dirname $(realpath $0))/lib"
 NODE_ENV=production node_modules/.bin/build-gtfs-match-index \
