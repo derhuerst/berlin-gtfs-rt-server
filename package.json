@@ -2,7 +2,7 @@
 	"private": true,
 	"name": "berlin-gtfs-rt-server",
 	"description": "Expose Berlin & Brandenburg transit data as a GTFS-RT feed.",
-	"version": "3.1.0",
+	"version": "3.1.1",
 	"main": "index.js",
 	"keywords": [
 		"berlin",
