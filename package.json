@@ -39,7 +39,7 @@
 	"dependencies": {
 		"cached-hafas-client": "^4.0.0",
 		"hafas-client": "^5.16.0",
-		"hafas-gtfs-rt-feed": "^7.1.0",
+		"hafas-gtfs-rt-feed": "^8.0.0",
 		"ioredis": "^5.0.3",
 		"normalize-vbb-station-name-for-search": "^1.0.0",
 		"quick-lru": "^5.1.1",
