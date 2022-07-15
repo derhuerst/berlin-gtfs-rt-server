@@ -3,6 +3,7 @@
 	"name": "berlin-gtfs-rt-server",
 	"description": "Expose Berlin & Brandenburg transit data as a GTFS-RT feed.",
 	"version": "3.1.1",
+	"type": "module",
 	"main": "index.js",
 	"keywords": [
 		"berlin",
@@ -39,7 +40,7 @@
 	"dependencies": {
 		"cached-hafas-client": "^4.0.0",
 		"hafas-client": "^5.16.0",
-		"hafas-gtfs-rt-feed": "^8.0.0",
+		"hafas-gtfs-rt-feed": "^8.1.0",
 		"ioredis": "^5.0.3",
 		"normalize-vbb-station-name-for-search": "^1.0.0",
 		"quick-lru": "^5.1.1",

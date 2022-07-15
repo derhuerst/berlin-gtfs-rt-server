@@ -1,7 +1,5 @@
-'use strict'
-
-const {strictEqual} = require('assert')
-const hafas = require('../lib/hafas')
+import {strictEqual} from 'assert'
+import {hafas} from '../lib/hafas.js'
 
 const ctx = {
 	profile: hafas.profile,
