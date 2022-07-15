@@ -21,6 +21,8 @@ It also needs access to a [PostgreSQL](https://www.postgresql.org) 14+ server; P
 
 It also needs access to a [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro) server (just follow its [setup guide](https://docs.nats.io/nats-streaming-server/run)); Set the `NATS_STREAMING_URL` environment variable if you run it in an unusual configuration.
 
+The [`start.sh` script](start.sh) requires at least Bash 5.0 to run (because it uses `5.0`); macOS currently bundles Bash 3.2, so use `brew install bash` to install an up-to-date version.
+
 ```shell
 git clone https://github.com/derhuerst/berlin-gtfs-rt-server.git
 cd berlin-gtfs-rt-server
