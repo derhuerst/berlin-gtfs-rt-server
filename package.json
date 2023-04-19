@@ -48,13 +48,13 @@
 		"slugg": "^1.2.1"
 	},
 	"devDependencies": {
-		"@derhuerst/technical-docs-cli": "^1.2.0",
+		"@derhuerst/technical-docs-cli": "^1.5.0",
 		"eslint": "^8.0.0",
 		"pino-pretty": "^7.0.1"
 	},
 	"scripts": {
 		"start": "./start.sh",
-		"docs": "build-technical-doc --inline-html --syntax-stylesheet-url /syntax.css <docs/readme.md >docs/index.html && build-technical-doc --syntax-stylesheet github >docs/syntax.css",
+		"docs": "./build-docs.js",
 		"lint": "eslint .",
 		"build": "./build.sh && npm run docs",
 		"test": "./test/index.sh",
