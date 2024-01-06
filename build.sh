@@ -8,7 +8,7 @@ wget --compression auto \
 	-r --no-parent --no-directories -R .csv.gz \
 	-P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
 
-env | grep '^PG'
+env | grep '^PG' || true
 
 NODE_ENV=production node_modules/.bin/gtfs-to-sql -d --trips-without-shape-id --routes-without-agency-id -- \
 	gtfs/agency.csv \
