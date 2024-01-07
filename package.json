@@ -50,7 +50,7 @@
 	"devDependencies": {
 		"@derhuerst/technical-docs-cli": "^1.5.0",
 		"eslint": "^8.0.0",
-		"pino-pretty": "^7.0.1"
+		"pino-pretty": "^10.3.1"
 	},
 	"scripts": {
 		"start": "./start.sh",
