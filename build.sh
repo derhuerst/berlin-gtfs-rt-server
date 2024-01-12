@@ -4,6 +4,13 @@ set -e
 set -o pipefail
 set -x
 
+>&2 echo "Checking if GTFS was already imported..."
+if [[ $(psql -t -c 'SELECT 1 FROM agency LIMIT 1') ]]
+then
+    >&2 echo "GTFS data already imported, skipping build.sh"
+    exit 0
+fi
+
 wget --compression auto \
 	-r --no-parent --no-directories -R .csv.gz \
 	-P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
