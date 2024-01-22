@@ -19,7 +19,7 @@ This project uses [`hafas-client`](https://github.com/public-transport/hafas-cli
 
 It also needs access to a [PostgreSQL](https://www.postgresql.org) 14+ server; Pass custom [`PG*` environment variables](https://www.postgresql.org/docs/14/libpq-envars.html) if you run PostgreSQL in an unusual configuration.
 
-It also needs access to a [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro) server (just follow its [setup guide](https://docs.nats.io/nats-streaming-server/run)); Set the `NATS_STREAMING_URL` environment variable if you run it in an unusual configuration.
+It also needs access to a [NATS Streaming](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan) server (just follow its [installation guide](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan/stan-nats-streaming-server/installing)); Set the `NATS_STREAMING_URL` environment variable if you run it in an unusual configuration.
 
 The [`start.sh` script](start.sh) requires at least Bash 5.0 to run (because it uses `5.0`); macOS currently bundles Bash 3.2, so use `brew install bash` to install an up-to-date version.
 
@@ -69,7 +69,7 @@ docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server
 
 ### via docker-compose
 
-The example [`docker-compose.yml`](docker-compose.yml) starts up a complete set of containers (`berlin-gtfs-rt-server`, Redis, PostGIS/PostgreSQL, [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro)) to generate a GTFS-RT feed
+The example [`docker-compose.yml`](docker-compose.yml) starts up a complete set of containers (`berlin-gtfs-rt-server`, Redis, PostGIS/PostgreSQL, [NATS Streaming](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan)) to generate a GTFS-RT feed
 
 Be sure to set `POSTGRES_PASSWORD`, either via a `.env` file or an environment variable.
 
