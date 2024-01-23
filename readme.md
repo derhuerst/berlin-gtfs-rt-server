@@ -11,7 +11,7 @@ This project uses [`hafas-client`](https://github.com/public-transport/hafas-cli
 
 ## Installing & running
 
-*Note*: [`hafas-gtfs-rt-feed`](https://github.com/derhuerst/hafas-gtfs-rt-feed), the library used by this project for convert for building the GTFS-RT feed, has more extensive docs. For brevity and to avoid duplication (with e.g. [`hamburg-gtfs-rt-server`](https://github.com/derhuerst/hamburg-gtfs-rt-server)), the following instructions just cover the basics.
+*Note*: [`hafas-gtfs-rt-feed`](https://github.com/derhuerst/hafas-gtfs-rt-feed), the library used by this project for building the GTFS-RT feed, has more extensive docs. For brevity and to avoid duplication (with e.g. [`hamburg-gtfs-rt-server`](https://github.com/derhuerst/hamburg-gtfs-rt-server)), the following instructions just cover the basics.
 
 ### Prerequisites
 
