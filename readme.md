@@ -17,9 +17,11 @@ This project uses [`hafas-client`](https://github.com/public-transport/hafas-cli
 
 `berlin-gtfs-rt-server` needs access to a [Redis](https://redis.io/) server, you can configure a custom host/port by setting the `REDIS_URL` environment variable.
 
-It also needs access to a [PostgreSQL](https://www.postgresql.org) 14+ server; Pass custom [`PG*` environment variables](https://www.postgresql.org/docs/14/libpq-envars.html) if you run PostgreSQL in an unusual configuration.
+It also needs access to a [PostgreSQL](https://www.postgresql.org) 14+ server with [PostGIS](https://postgis.net/) installed; Pass custom [`PG*` environment variables](https://www.postgresql.org/docs/14/libpq-envars.html) if you run PostgreSQL in an unusual configuration.
 
 It also needs access to a [NATS Streaming](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan) server (just follow its [installation guide](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan/stan-nats-streaming-server/installing)); Set the `NATS_STREAMING_URL` environment variable if you run it in an unusual configuration.
+
+It also needs the [`sponge` command](https://linux.die.net/man/1/sponge) from the [moreutils package](https://repology.org/project/moreutils/information) to be installed.
 
 The [`start.sh` script](start.sh) requires at least Bash 5.0 to run (because it uses `5.0`); macOS currently bundles Bash 3.2, so use `brew install bash` to install an up-to-date version.
 
