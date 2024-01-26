@@ -9,16 +9,22 @@ lib="$(dirname $(realpath $0))/lib"
 # https://stackoverflow.com/questions/360201/how-do-i-kill-background-processes-jobs-when-my-shell-script-exits/2173421#2173421
 trap 'exit_code=$?; kill -- $(jobs -p); exit $exit_code' SIGINT SIGTERM EXIT
 
-NODE_ENV=production node_modules/.bin/monitor-hafas \
+env \
+	METRICS_SERVER_PORT=9323 NODE_ENV=production \
+	node_modules/.bin/monitor-hafas \
 	--trips-fetch-mode on-demand \
 	$lib/hafas.js \
 	&
 
-NODE_ENV=production node_modules/.bin/match-with-gtfs \
+env \
+	METRICS_SERVER_PORT=9324 NODE_ENV=production LOG_LEVEL=debug \
+	node_modules/.bin/match-with-gtfs \
 	$lib/hafas-info.js $lib/gtfs-info.js \
 	&
 
-NODE_ENV=production node_modules/.bin/serve-as-gtfs-rt \
+env \
+	METRICS_SERVER_PORT=9325 NODE_ENV=production \
+	node_modules/.bin/serve-as-gtfs-rt \
 	--signal-demand \
 	--feed-url 'https://vbb-gtfs.jannisr.de/latest/' \
 	&
