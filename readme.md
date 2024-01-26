@@ -25,6 +25,16 @@ It also needs the [`sponge` command](https://linux.die.net/man/1/sponge) from th
 
 The [`start.sh` script](start.sh) requires at least Bash 5.0 to run (because it uses `5.0`); macOS currently bundles Bash 3.2, so use `brew install bash` to install an up-to-date version.
 
+#### Optional: dynamic local addresses from a range
+
+As an optional feature, when polling the HAFAS API, `berlin-gtfs-rt-server` uses IP addresses from a pool defined in `$RANDOM_LOCAL_ADDRESSES_PREFIX` as local addresses. [`localaddress-agent`](https://github.com/derhuerst/localaddress-agent) is used for this, which currently only supports Linux.
+
+`localaddress-agent` is defined as an [optional dependency](https://docs.npmjs.com/cli/v9/configuring-npm/package-json#optionaldependencies), so its installation will be attempted, but a failure won't cause the whole `npm install` command to fail. By setting the `$RANDOM_LOCAL_ADDRESSES_PREFIX` environment variable, you make its installation mandatory.
+
+Refer to [`localaddress-agent`'s installation instructions](https://github.com/derhuerst/localaddress-agent/blob/main/readme.md#installation) for its required dependencies.
+
+### Cloning
+
 ```shell
 git clone https://github.com/derhuerst/berlin-gtfs-rt-server.git
 cd berlin-gtfs-rt-server
