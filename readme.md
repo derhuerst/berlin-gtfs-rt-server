@@ -38,7 +38,7 @@ Refer to [`localaddress-agent`'s installation instructions](https://github.com/d
 ```shell
 git clone https://github.com/derhuerst/berlin-gtfs-rt-server.git
 cd berlin-gtfs-rt-server
-npm install --production
+npm install
 ```
 
 ### Building the matching index
