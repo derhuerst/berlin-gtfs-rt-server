@@ -1,5 +1,11 @@
 # berlin-gtfs-rt-server
 
+> [!IMPORTANT]
+>
+> This project is deprecated, it has been replaced by [VBB's official GTFS-RT feed](https://production.gtfsrt.vbb.de/).
+
+---
+
 **Poll the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas) to provide a [GTFS Realtime (GTFS-RT)](https://gtfs.org/documentation/realtime/reference/) feed for Berlin & Brandenburg.**
 
 todo: add recommendation to use the official GTFS-RT feed!
