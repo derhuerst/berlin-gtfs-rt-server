@@ -1,12 +1,14 @@
 # berlin-gtfs-rt-server
 
-**Poll the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas) to provide a [GTFS Realtime (GTFS-RT)](https://gtfs.org/reference/realtime/v2/) feed for Berlin & Brandenburg.**
+**Poll the [VBB](https://en.wikipedia.org/wiki/Verkehrsverbund_Berlin-Brandenburg) [HAFAS endpoint](https://github.com/public-transport/vbb-hafas) to provide a [GTFS Realtime (GTFS-RT)](https://gtfs.org/documentation/realtime/reference/) feed for Berlin & Brandenburg.**
+
+todo: add recommendation to use the official GTFS-RT feed!
 
 [![Prosperity/Apache license](https://img.shields.io/static/v1?label=license&message=Prosperity%2FApache&color=0997E8)](#license)
 [![support me via GitHub Sponsors](https://img.shields.io/badge/support%20me-donate-fa7664.svg)](https://github.com/sponsors/derhuerst)
 [![chat with me on Twitter](https://img.shields.io/badge/chat%20with%20me-on%20Twitter-1da1f2.svg)](https://twitter.com/derhuerst)
 
-This project uses [`hafas-client`](https://github.com/public-transport/hafas-client) & [`hafas-gtfs-rt-feed`](https://github.com/derhuerst/hafas-gtfs-rt-feed) to fetch live data about all vehicles in the Berlin & Brandenburg area and build a live [GTFS Realtime (GTFS-RT)](https://developers.google.com/transit/gtfs-realtime/) feed from them.
+This project uses [`hafas-client`](https://github.com/public-transport/hafas-client) & [`hafas-gtfs-rt-feed`](https://github.com/derhuerst/hafas-gtfs-rt-feed) to fetch live data about all vehicles in the Berlin & Brandenburg area and build a live [GTFS Realtime (GTFS-RT)](https://gtfs.org/documentation/realtime/reference/) feed from them.
 
 
 ## Installing & running
@@ -22,6 +24,8 @@ It also needs access to a [PostgreSQL](https://www.postgresql.org) 14+ server wi
 It also needs access to a [NATS Streaming](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan) server (just follow its [installation guide](https://nats-io.gitbook.io/legacy-nats-docs/nats-streaming-server-aka-stan/stan-nats-streaming-server/installing)); Set the `NATS_STREAMING_URL` environment variable if you run it in an unusual configuration.
 
 It also needs the [`sponge` command](https://linux.die.net/man/1/sponge) from the [moreutils package](https://repology.org/project/moreutils/information) to be installed.
+
+The [`build.sh` script](build.sh) also needs `curl` & `wget`.
 
 The [`start.sh` script](start.sh) requires at least Bash 5.0 to run (because it uses `5.0`); macOS currently bundles Bash 3.2, so use `brew install bash` to install an up-to-date version.
 
@@ -67,16 +71,16 @@ In production, run all three using a tool that restarts them when they crash, e.
 
 ### via Docker
 
-A Docker image [is available as `derhuerst/berlin-gtfs-rt-server`](https://hub.docker.com/r/derhuerst/berlin-gtfs-rt-server).
+A Docker image [is available as `docker.io/derhuerst/berlin-gtfs-rt-server`](https://hub.docker.com/r/docker.io/derhuerst/berlin-gtfs-rt-server).
 
 *Note:* The Docker image *does not* contain Redis, PostgreSQL & NATS. You need to configure access to them using the environment variables documented above (e.g. `NATS_STREAMING_URL`).
 
 ```shell
 export BBOX='{"north": 52.52, "west": 13.36, "south": 52.5, "east": 13.39}'
 # build the matching index
-docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server ./build.sh
+docker run -e BBOX -i -t --rm docker.io/derhuerst/berlin-gtfs-rt-server ./build.sh
 # run
-docker run -e BBOX -i -t --rm derhuerst/berlin-gtfs-rt-server
+docker run -e BBOX -i -t --rm docker.io/derhuerst/berlin-gtfs-rt-server
 ```
 
 ### via docker-compose
