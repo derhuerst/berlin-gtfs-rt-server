@@ -4,9 +4,14 @@ set -e
 set -o pipefail
 set -x
 
+# todo: /latest/ doesn't redirect, because it is a symlink on the webserver
+# see also http://www.openfusion.net/tags/nginx/
+gtfs_url='https://vbb-gtfs.jannisr.de/latest/'
+gtfs_permalink="$(curl -fsSL -o /dev/null -w '%{url_effective}' "$gtfs_url")"
+
 wget --compression auto \
 	-r --no-parent --no-directories -R .csv.gz \
-	-P gtfs -N 'https://vbb-gtfs.jannisr.de/latest/'
+	-P gtfs -N "$gtfs_permalink"
 
 env | grep '^PG' || true
 
